@@ -3,6 +3,7 @@
 @section('title', 'ログイン')
 
 @section('content')
+@include('nav')
   <div class="container">
     <div class="row">
       <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
@@ -29,7 +30,7 @@
  
                 <input type="hidden" name="remember" id="remember" value="on">
 
-                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ログイン</button>
+                <button class="btn btn-block default-color mt-2 mb-2" type="submit">ログイン</button>
 
               </form>
 
