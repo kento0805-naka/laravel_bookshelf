@@ -14,6 +14,21 @@ class UserController extends Controller
         return view('users.show', ['user' => $user]);
     }
 
+    public function edit(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return view('users.edit', ['user' => $user]);
+    }
+
+    public function update(Request $request, string $name)
+    {
+        $user = User::where(['name' => $name])->first();
+        $user->description = $request->description;
+        $user->save();
+        return redirect()->route('users.show', ['name' => $name]);
+    }
+
     public function unfollow(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
@@ -27,7 +42,7 @@ class UserController extends Controller
 
         return ['name' => $name];
     }
-    
+
     public function follow(Request $request, string $name)
     {
         $user = User::where('name', $name)->first();
