@@ -19,10 +19,10 @@
               12 登録
             </a>
             <a href="" class="text-muted pr-lg-3">
-              10 フォロー
+              {{ $user->countFollowing() }} フォロー
             </a>
             <a href="" class="text-muted pr-lg-3">
-              10 フォロワー
+              {{ $user->countFollower() }} フォロワー
             </a>
         	</div>
 				</div>
