@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Userbook extends Model
 {
     protected $fillable = [
-        'status'
+        'status', 'user_id', 'book_id',
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function books()
+    public function book()
     {
         return $this->belongsTo('App\Book');
     }
