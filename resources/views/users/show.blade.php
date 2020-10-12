@@ -49,7 +49,7 @@
         
 			</div>
       <div class="card-body">
-			<div class="card-text">{{ $user_books }}</div>
+			<div class="card-text">{{ $user->description }}</div>
       </div>
     </div>
   </div>

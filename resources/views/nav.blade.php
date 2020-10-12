@@ -19,6 +19,11 @@
     </li>
     @endauth
     @auth
+    <li class="nav-item">
+    <a class="nav-link" href="{{ route('book.create') }}"><i class="fas fa-book mr-1"></i>本を検索</a>
+    </li>
+    @endauth
+    @auth
     <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"

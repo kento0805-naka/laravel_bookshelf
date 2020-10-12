@@ -14,4 +14,4 @@ Route::prefix('users')->name('users.')->group(function () {
     });
 });
 
-Route::resource('kento', 'UserController');
+Route::resource('book', 'BooksController');
