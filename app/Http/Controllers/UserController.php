@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Book;
 
 class UserController extends Controller
 {
     public function show(string $name) {
         //userの取得
         $user = User::where('name', $name)->first();
+        $books = Book::all();
 
-        return view('users.show', ['user' => $user]);
+        return view('users.show', ['user' => $user, 'books' => $books]);
     }
 
     public function edit(string $name)
@@ -58,5 +60,6 @@ class UserController extends Controller
 
         return ['name' => $name];
     }
+
     
 }
