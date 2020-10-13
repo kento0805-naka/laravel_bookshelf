@@ -5,7 +5,8 @@
 @section('content')
   @include('nav') 
   <div class="container">
-    @include('error_message')
+		@include('error_message')
+	<h3>本を検索しよう</h3>
   <form class="form-inline d-flex justify-content-center md-form form-sm">
 		@csrf
 		<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"

@@ -80,4 +80,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Book', 'App\Userbook')->withTimestamps();
     }
+
+    //Userが登録しているか確認
+    public function isRegisterd($book)
+    {
+        $find_book = $this->books->where('image_url', $book)->first();
+        if (isset($find_book)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

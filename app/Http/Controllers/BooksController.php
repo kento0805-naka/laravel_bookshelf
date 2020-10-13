@@ -10,9 +10,10 @@ use RakutenRws_Client;
 
 class BooksController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request, User $user)
     {
         $books = [];
+        $user = Auth::user();
 
         $client = new RakutenRws_Client();
 
@@ -20,7 +21,6 @@ class BooksController extends Controller
         define("RAKUTEN_APPLICATION_SEACRET", config('app.rakuten_key'));
 
         $client->setApplicationId(RAKUTEN_APPLICATION_ID);
-        \Debugbar::info($client);
 
         $keyword = $request->input('keyword');
         
@@ -47,8 +47,8 @@ class BooksController extends Controller
             echo 'Error:'.$response->getMessage();
           }
         }
-        \Debugbar::info($books);
-        return view('books.create', compact('books'));
+        
+        return view('books.create', compact('books', 'user'));
     }
 
     public function store(Request $request, Book $book)

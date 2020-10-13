@@ -3,6 +3,9 @@
   <a class="navbar-brand" href="/"><i class="fas fa-book mr-1"></i>Bookshelf</a>
 
   <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+    <a class="nav-link" href="{{ route('users.index') }}"><i class="far fa-user"></i>ユーザー検索</a>
+    </li>
     @guest
     <li class="nav-item">
     <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
