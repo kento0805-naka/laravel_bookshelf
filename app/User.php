@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 // use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 // use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Book;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -72,11 +73,11 @@ class User extends Authenticatable
 
     public function userbooks()
     {
-        return $this->hasMany('App\Userbook');
+        return $this->hasMany('App\Userbook')->withTimestamps();
     }
 
     public function books()
     {
-        return $this->belongsToMany('App\Book', 'App\Userbook');
+        return $this->belongsToMany('App\Book', 'App\Userbook')->withTimestamps();
     }
 }

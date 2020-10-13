@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Book;
+use App\User;
 use RakutenRws_Client;
 
 class BooksController extends Controller
@@ -24,7 +26,7 @@ class BooksController extends Controller
         
         $hits = 30;
 
-        if(!empty($keyword)){ 
+        if (!empty($keyword)){ 
         $response = $client->execute('BooksBookSearch', array(
             'title' => $keyword,
             'hits' => $hits,
@@ -35,8 +37,9 @@ class BooksController extends Controller
             $book = array(
                 'title' => $item['title'],
                 'author' => $item['author'],
-                'itemUrl' => $item['itemUrl'],
+                'item_url' => $item['itemUrl'],
                 'image_url' => $item['mediumImageUrl'],
+                'itemCaption' => $item['itemCaption'],
             );
             array_push($books, $book);
         }
@@ -46,7 +49,36 @@ class BooksController extends Controller
         }
         \Debugbar::info($books);
         return view('books.create', compact('books'));
+    }
 
+    public function store(Request $request, Book $book)
+    {
+        $book->title = $request->title;
+        $book->author = $request->author;
+        $book->image_url = $request->image_url;
+        $book->item_url = $request->item_url;
 
+        $find_book = Book::where('image_url', $book->image_url)->exists();
+
+        //booksテーブルに本が登録されているかどうか確認
+        if ($find_book){
+            //データベースから本を取得
+            $registered_book = Book::where('image_url', $request->image_url)->first();
+            //current_userが本を登録
+            $user = Auth::user();
+            $user->books()->attach($registered_book);
+            return redirect('/');
+        } else {
+            //本をデータベースに保存
+            $book->save();
+            //userが本を登録
+            $user = Auth::user();
+            $user->books()->attach($book);
+            return redirect('/');
+        }
+        
+
+        // $book->save();
+        
     }
 }
