@@ -16,17 +16,19 @@
 	<div class="row">
 		@foreach ($users as $user)
 			<div class="col-lg-3 col-sm-6 p-1 mb-2">
-				<div class="card testimonial-card">
-					<div class="card-up indigo lighten-1"></div>
-					<div class="avatar mx-auto white mt-3">
-						<i class="far fa-user" id=user-icon></i>
+				<a href="{{ route('users.show', ['name' => $user->name]) }}">
+					<div class="card testimonial-card" id="userbox">
+						<div class="card-up indigo lighten-1"></div>
+						<div class="avatar mx-auto white mt-3">
+							<i class="far fa-user" id=user-icon></i>
+						</div>
+						<div class="card-body">
+							<h4 class="card-title">{{ $user->name }}</h4>
+							<hr>
+							<p>本の登録数: {{ $user->books->count() }}冊</p>
+						</div>
 					</div>
-					<div class="card-body">
-						<h4 class="card-title">{{ $user->name }}</h4>
-						<hr>
-						<p>本の登録数: 10冊</p>
-					</div>
-				</div>
+				</a>
 			</div>
 		@endforeach
 	</div>

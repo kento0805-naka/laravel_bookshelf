@@ -23,8 +23,9 @@ class UserController extends Controller
     public function show(string $name) {
         //userの取得
         $user = User::where('name', $name)->first();
+        $userbooks = $user->books->sortByDesc('created_at');
 
-        return view('users.show', ['user' => $user]);
+        return view('users.show', compact('user', 'userbooks'));
     }
 
     public function edit(string $name)

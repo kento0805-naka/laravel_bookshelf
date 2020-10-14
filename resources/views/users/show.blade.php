@@ -16,7 +16,7 @@
           
           <div class="mt-3 ml-3" id="user-follow-info">
             <a href="" class="text-muted pr-lg-3">
-              12 登録
+              {{ $user->books->count() }} 登録
             </a>
             <a href="" class="text-muted pr-lg-3">
               {{ $user->countFollowing() }} フォロー
@@ -51,6 +51,7 @@
       <div class="card-body">
 			<div class="card-text">{{ $user->description }}</div>
       </div>
-    </div>
+		</div>
+		@include('users/user_content')
   </div>
 @endsection

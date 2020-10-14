@@ -5,7 +5,7 @@
       <div class="col-lg-6 col-sm-12 p-1 mb-2">
         <div class="card grey lighten-2">
           <div class="card-body pb-0 row">
-						<img src="{{ $book['image_url'] }}" alt="" class="col-3">
+						<img src="{{ $book['image_url'] }}" width="165px" height="163px" class="col-3">
 						<div class="col-9">
 							<a href="{{ $book['item_url'] }}">
 							<h5 class="mb-1">{{ $book['title'] }}</h5>

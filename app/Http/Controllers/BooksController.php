@@ -67,18 +67,23 @@ class BooksController extends Controller
             //current_userが本を登録
             $user = Auth::user();
             $user->books()->attach($registered_book);
-            return redirect('/');
+            return redirect()->route('users.show', ['name' => Auth::user()->name]);
         } else {
             //本をデータベースに保存
             $book->save();
             //userが本を登録
             $user = Auth::user();
             $user->books()->attach($book);
-            return redirect('/');
+            return redirect()->route('users.show', ['name' => Auth::user()->name]);
         }
-        
+    }
 
-        // $book->save();
-        
+    public function destroy(Book $book)
+    {
+        $book = Book::find($book->id);
+        $userbook = Auth::user()->userbooks->where('book_id', $book->id)->first();
+        \Debugbar::info($userbook);
+        $userbook->delete();
+        return redirect()->route('users.show', ['name' => Auth::user()->name]);
     }
 }

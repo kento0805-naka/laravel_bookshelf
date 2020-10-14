@@ -73,7 +73,7 @@ class User extends Authenticatable
 
     public function userbooks()
     {
-        return $this->hasMany('App\Userbook')->withTimestamps();
+        return $this->hasMany('App\Userbook');
     }
 
     public function books()
