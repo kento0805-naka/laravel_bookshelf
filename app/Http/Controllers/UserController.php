@@ -23,7 +23,7 @@ class UserController extends Controller
     public function show(string $name) {
         //userの取得
         $user = User::where('name', $name)->first();
-        $userbooks = $user->books->sortByDesc('created_at');
+        $userbooks = $user->books->where('pivot.status', '=', 1)->sortByDesc('created_at');
 
         return view('users.show', compact('user', 'userbooks'));
     }
@@ -71,6 +71,14 @@ class UserController extends Controller
         $request->user()->followings()->attach($user);
 
         return ['name' => $name];
+    }
+
+    public function read(string $name)
+    {
+        $user = User::where('name', $name)->first();
+        $read_books = $user->books->where('pivot.status', '=', 2)->sortByDesc('created_at');
+
+        return view('users.read', compact('user', 'read_books'));
     }
 
     

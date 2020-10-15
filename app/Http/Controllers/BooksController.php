@@ -78,10 +78,26 @@ class BooksController extends Controller
         }
     }
 
+    public function update(Book $book) {
+        $books = Book::find($book->id);
+        $userbook = Auth::user()->userbooks->where('book_id', $books->id)->first();
+
+        if ($userbook->status === 1){
+            $userbook->status = 2;
+            $userbook->save();
+            return redirect()->route('users.read', ['name' => Auth::user()->name]);
+        } else {
+            $userbook->status = 1;
+            $userbook->save();
+            return redirect()->route('users.show', ['name' => Auth::user()->name]);
+        }
+
+    }
+
     public function destroy(Book $book)
     {
-        $book = Book::find($book->id);
-        $userbook = Auth::user()->userbooks->where('book_id', $book->id)->first();
+        $books = Book::find($book->id);
+        $userbook = Auth::user()->userbooks->where('book_id', $books->id)->first();
         \Debugbar::info($userbook);
         $userbook->delete();
         return redirect()->route('users.show', ['name' => Auth::user()->name]);

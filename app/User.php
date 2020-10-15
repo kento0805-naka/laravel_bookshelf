@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
 
     //引数に渡されたuserがfollowしていたらtrueを返す
-    public function isFollowedBy(?User $user): bool
+    public function isFollowedBy(?User $user):bool
     {
         return $user
             ? (bool)$this->followers->where('id', $user->id)->count()
@@ -78,7 +78,7 @@ class User extends Authenticatable
 
     public function books()
     {
-        return $this->belongsToMany('App\Book', 'App\Userbook')->withTimestamps();
+        return $this->belongsToMany('App\Book', 'App\Userbook')->withPivot('status')->withTimestamps();
     }
 
     //Userが登録しているか確認
@@ -86,6 +86,19 @@ class User extends Authenticatable
     {
         $find_book = $this->books->where('image_url', $book)->first();
         if (isset($find_book)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isreadBook(Book $book):Bool
+    {
+        $userbook = $this->books->where('id', $book->id);
+
+        //userbookのstatusが１の時trueを返す
+        $status = $userbook->where('pivot.status', 1)->count();
+        if ($status === 1){
             return true;
         } else {
             return false;
