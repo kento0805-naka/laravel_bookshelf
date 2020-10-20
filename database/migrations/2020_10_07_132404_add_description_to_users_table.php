@@ -14,7 +14,7 @@ class AddDescriptionToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('description', 140);
+            $table->string('description', 140)->nullable;
         });
     }
 

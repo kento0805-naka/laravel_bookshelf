@@ -16,11 +16,7 @@
     <a class="nav-link" href="{{ route('login') }}">ログイン</a>
     </li>
     @endguest
-    @auth
-    <li class="nav-item">
-      <a class="nav-link" href=""><i class="fas fa-pen mr-1"></i>投稿する</a>
-    </li>
-    @endauth
+    
     @auth
     <li class="nav-item">
     <a class="nav-link" href="{{ route('book.create') }}"><i class="fas fa-book mr-1"></i>本を検索</a>
