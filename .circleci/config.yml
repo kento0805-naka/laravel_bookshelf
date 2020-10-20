@@ -50,7 +50,7 @@ jobs:
           command: |
             sudo apt-get update
             sudo docker-php-ext-install pdo_mysql
-            dockerize -wait tcp://localhost:3306 -timeout 1m
+            dockerize -wait tcp://localhost:3306 -timeout 2m
       - run:
           name: php test
           command: vendor/bin/phpunit
