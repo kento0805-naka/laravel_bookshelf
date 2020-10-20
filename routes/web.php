@@ -2,7 +2,7 @@
 
 
 Auth::routes();
-Route::get('/', 'TopController@index');
+Route::get('/', 'TopController@index')->name('index');
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/index', 'UserController@index')->name('index');
@@ -16,4 +16,4 @@ Route::prefix('users')->name('users.')->group(function () {
     });
 });
 
-Route::resource('book', 'BooksController');
+Route::resource('book', 'BooksController')->middleware('auth');
