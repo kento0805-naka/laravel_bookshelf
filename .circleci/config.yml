@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:7.1-node-browsers
+      - image: circleci/php:7.3-node-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -17,6 +17,11 @@ jobs:
       # - image: circleci/mysql:5.7-ram
       #
       # - image: redis:2.8.19
-
     steps:
-      - run: echo "Hello World"
+      - checkout
+      - run: composer install -n --prefer-dist
+      - run: npm ci
+      - run: npm run dev
+      - run:
+          name: php test
+          command: vendor/bin/phpunit

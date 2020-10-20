@@ -7,7 +7,7 @@
   <div class="container">
     <header class="" id="toppage-header">
       <div id="top-container">
-        <h2 id='top-title'>自分の本棚を作ろう</h2>
+        <h3 id='top-title'>自分の本棚を作ろう</h3>
         <div class="row" id="top-buttons">
           @guest
             <a class="col-12" href="{{ route('login')}}"><button class="btn btn-md btn-default top-button">ログイン</button></a>
