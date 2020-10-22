@@ -8,7 +8,7 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-node-browsers
-      - image: circleci/mysql:8.0.21
+      - image: circleci/mysql:8.0.21-ram
         environment:
           MYSQL_DATABASE: bookshelf
           MYSQL_USER: default
